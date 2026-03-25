@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-dark text-text-main font-display antialiased;
+    scrollbar-width: thin;
+    scrollbar-color: #30363d #0d1117;
+  }
+}
+
+.mono-text {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.window-border {
+  border: 1px solid #30363d;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.window-border:hover {
+  border-color: #00b894;
+  box-shadow: 0 0 12px rgba(0, 184, 148, 0.1);
+}
+
+.status-bar-bg {
+  background: #0d1117;
+}
+
+.code-tab-active {
+  border-top: 1px solid #00f5d4;
+  background: #161b22;
+}

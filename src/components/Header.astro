@@ -1,0 +1,83 @@
+---
+
+---
+
+<header
+  class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-sm border-b border-border-zinc px-6 py-3 flex items-center justify-between"
+>
+  <div class="flex items-center gap-3">
+    <div class="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_#00b894]"></div>
+    <h2 class="mono-text text-lg font-bold tracking-tighter flex items-center">
+      <span>A</span>
+      <span class="typewriter-container">
+        <span class="typewriter-text">rielM</span>
+      </span>
+      <span class="cursor text-primary">_</span>
+    </h2>
+  </div>
+  <nav class="flex items-center gap-8">
+    <div
+      class="hidden md:flex items-center gap-6 mono-text text-xs uppercase tracking-widest"
+    >
+      <a href="#projects" class="hover:text-primary transition-colors"
+        >01. Proyectos</a
+      >
+      <a href="#stack" class="hover:text-primary transition-colors"
+        >02. Tech_Stack</a
+      >
+      <a href="#experience" class="hover:text-primary transition-colors"
+        >03. Experiencia</a
+      >
+      <a href="#education" class="hover:text-primary transition-colors"
+        >04. Formación</a
+      >
+      <!-- <a href="#blog" class="hover:text-primary transition-colors">XX. Blog</a> -->
+    </div>
+    <button
+      class="bg-primary text-background-dark mono-text text-[10px] font-bold px-3 py-1.5 uppercase rounded hover:opacity-90 transition-opacity"
+    >
+      [ Contactar ]
+    </button>
+  </nav>
+</header>
+
+<style>
+  .typewriter-container {
+    display: inline-flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0; /* Empieza solo con la "A" visible */
+    /* Ejecuta la animación una vez, dura 1s, con delay de 0.5s para que el usuario la vea */
+    animation: typingOnce 1.2s steps(5, end) 0.5s forwards;
+  }
+
+  .typewriter-text {
+    /* Asegura que el texto no se colapse mientras se expande el contenedor */
+    display: inline-block;
+  }
+
+  @keyframes typingOnce {
+    from {
+      width: 0;
+    }
+    to {
+      /* "rielM" son 5 caracteres. En JetBrains Mono, 5ch es exacto */
+      width: 5ch;
+    }
+  }
+
+  .cursor {
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

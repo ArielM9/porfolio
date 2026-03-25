@@ -1,0 +1,237 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort(
+  (a, b) => a.data.priority - b.data.priority,
+);
+---
+
+<Layout title="Ariel Marchegiani | Desarrollador Web Full Stack">
+  <Header />
+
+  <main class="flex-1 p-4 md:p-6 grid grid-cols-12 gap-4">
+    <Hero />
+
+    <!-- <aside
+      class="col-span-12 lg:col-span-4 window-border bg-surface-dark p-6 flex flex-col gap-6"
+    >
+      <div class="border-b border-border-zinc pb-4">
+        <h3 class="mono-text text-xs text-primary mb-4 uppercase">
+          Estado del Sistema
+        </h3>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs mono-text">
+            <span class="text-text-muted">SO:</span>
+            <span class="text-text-main">Arch Linux / Hyprland</span>
+          </div>
+          <div class="flex items-center justify-between text-xs mono-text">
+            <span class="text-text-muted">Editor:</span>
+            <span class="text-text-main">Neovim (NVChad)</span>
+          </div>
+          <div class="flex items-center justify-between text-xs mono-text">
+            <span class="text-text-muted">Ubicación:</span>
+            <span class="text-text-main">Remoto / España</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex-1 bg-background-dark/50 p-4 border border-border-zinc/50"
+      >
+        <p class="text-[11px] mono-text leading-tight text-text-muted">
+          // Ruta de aprendizaje actual:<br />
+          Explorando la gestión profunda de memoria en Rust y las complejidades de
+          WebGPU.
+        </p>
+      </div>
+    </aside> -->
+
+    <div class="col-span-12 mt-8 mb-2 flex items-center gap-4">
+      <h2
+        id="projects"
+        class="mono-text text-xl font-bold px-2 py-1 border-l-4 border-primary bg-primary/5"
+      >
+        [ 01. Proyectos ]
+      </h2>
+      <div class="h-[1px] flex-1 bg-border-zinc"></div>
+    </div>
+
+    {
+      sortedProjects.map((project, index) => {
+        const iconMap = {
+          "victorianos-web": "sports_soccer",
+          "gestion-club-rugby": "sports_rugby",
+        };
+        const icon = iconMap[project.slug] || "folder";
+        return <ProjectCard project={project} icon={icon} />;
+      })
+    }
+
+    <div class="col-span-12 mt-12 mb-2 flex items-center gap-4">
+      <h2
+        id="stack"
+        class="mono-text text-xl font-bold px-2 py-1 border-l-4 border-primary bg-primary/5"
+      >
+        [ 02. Tech_Stack ]
+      </h2>
+      <div class="h-[1px] flex-1 bg-border-zinc"></div>
+    </div>
+
+    <div
+      class="col-span-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+    >
+      {
+        [
+          { name: "JavaScript", icon: "simple-icons:javascript" },
+          { name: "TypeScript", icon: "simple-icons:typescript" },
+          { name: "React", icon: "simple-icons:react" },
+          { name: "Next.js", icon: "simple-icons:nextdotjs" },
+          { name: "Astro", icon: "simple-icons:astro" },
+          { name: "Node.js", icon: "simple-icons:nodedotjs" },
+          { name: "PostgreSQL", icon: "simple-icons:postgresql" },
+          { name: "Prisma", icon: "simple-icons:prisma" },
+          { name: "Python", icon: "simple-icons:python" },
+          { name: "Linux", icon: "simple-icons:linux" },
+          // HTML, CSS - se dan por sentadas en desarrollo web
+          // Docker, Coolify - skills de DevOps, no relevantes para Jr frontend
+          // Git - básico para cualquier desarrollador
+          // Java - aprendido en formación, no en proyectos
+        ].map((tech) => (
+          <div class="window-border bg-surface-dark p-4 flex flex-col items-center justify-center gap-3 group hover:border-primary/50 transition-colors">
+            <iconify-icon
+              icon={tech.icon}
+              class="text-primary text-3xl group-hover:scale-110 transition-transform"
+            />
+            <span class="mono-text text-xs">{tech.name}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="col-span-12 mt-12 mb-2 flex items-center gap-4">
+      <h2
+        id="experience"
+        class="mono-text text-xl font-bold px-2 py-1 border-l-4 border-primary bg-primary/5"
+      >
+        [ 03. Experiencia ]
+      </h2>
+      <div class="h-[1px] flex-1 bg-border-zinc"></div>
+    </div>
+
+    <div class="col-span-12 window-border bg-surface-dark p-6">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 class="mono-text text-text-main font-bold">Prácticas Desarrollo Full Stack</h3>
+            <p class="mono-text text-xs text-primary">DISOFIC</p>
+          </div>
+          <span class="mono-text text-xs text-text-muted">Oct 2024 - Dic 2024</span>
+        </div>
+        <p class="text-sm text-text-muted">
+          Desarrollo de aplicaciones de Backend para la gestión y automatización de bases de datos de clientes. 
+          Colaboración en el desarrollo de una aplicación de uso interno para el departamento de ventas, 
+          optimizando flujos de trabajo.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-span-12 mt-12 mb-2 flex items-center gap-4">
+      <h2
+        id="education"
+        class="mono-text text-xl font-bold px-2 py-1 border-l-4 border-primary bg-primary/5"
+      >
+        [ 04. Formación ]
+      </h2>
+      <div class="h-[1px] flex-1 bg-border-zinc"></div>
+    </div>
+
+    <div class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="window-border bg-surface-dark p-6">
+        <h3 class="mono-text text-text-main font-bold mb-1">Desarrollo de Aplicaciones Web</h3>
+        <p class="mono-text text-xs text-primary mb-2">Cesur Málaga</p>
+        <span class="mono-text text-xs text-text-muted">Sep 2022 - Dic 2024</span>
+      </div>
+      <div class="window-border bg-surface-dark p-6">
+        <h3 class="mono-text text-text-main font-bold mb-1">Comunicación Audiovisual</h3>
+        <p class="mono-text text-xs text-primary mb-2">Universidad de Málaga</p>
+        <span class="mono-text text-xs text-text-muted">Sep 2014 - Jun 2018</span>
+      </div>
+    </div>
+
+    <!-- Blog section commented - to be enabled in the future -->
+    <!--
+    <div class="col-span-12 mt-12 mb-2 flex items-center gap-4">
+      <h2
+        id="blog"
+        class="mono-text text-xl font-bold px-2 py-1 border-l-4 border-primary bg-primary/5"
+      >
+        [ XX. Posts_Recientes ]
+      </h2>
+      <div class="h-[1px] flex-1 bg-border-zinc"></div>
+    </div>
+
+    <div class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      ...
+    </div>
+    -->
+
+    <div class="col-span-12 mt-12 window-border bg-background-dark p-8">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2
+          id="contact"
+          class="mono-text text-2xl font-bold text-text-main mb-4"
+        >
+          Conectemos &gt; contacto.txt
+        </h2>
+        <p class="text-text-muted mb-8 mono-text text-sm">
+          Abierto a colaboraciones y oportunidades de nivel junior.
+        </p>
+        <div
+          class="bg-surface-dark border border-border-zinc p-4 text-left mono-text text-sm mb-6"
+        >
+          <div class="flex gap-2 mb-2">
+            <span class="text-green-400">?</span>
+            <span class="text-text-main">Mensaje:</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-primary">$</span>
+            <input
+              type="text"
+              placeholder="Escribe tu mensaje..."
+              class="bg-transparent border-none focus:ring-0 focus:outline-none p-0 text-text-main w-full placeholder-zinc-700"
+            />
+          </div>
+        </div>
+        <div class="flex justify-center gap-8">
+          <a
+            href="#"
+            class="text-text-muted hover:text-primary mono-text text-xs flex items-center gap-2 transition-colors"
+          >
+            <iconify-icon icon="simple-icons:github" class="text-lg"
+            ></iconify-icon> GITHUB
+          </a>
+          <a
+            href="#"
+            class="text-text-muted hover:text-primary mono-text text-xs flex items-center gap-2 transition-colors"
+          >
+            <iconify-icon icon="simple-icons:linkedin" class="text-lg"
+            ></iconify-icon> LINKEDIN
+          </a>
+          <a
+            href="#"
+            class="text-text-muted hover:text-primary mono-text text-xs flex items-center gap-2 transition-colors"
+          >
+            <span class="material-symbols-outlined text-sm">mail</span> EMAIL
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

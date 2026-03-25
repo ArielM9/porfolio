@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  icon?: string;
+  img?: string;
+}
+
+const { project, icon = "terminal", img = "" } = Astro.props;
+const { title, description, tags } = project.data;
+---
+
+<div
+  class="col-span-12 md:col-span-6 lg:col-span-4 window-border bg-surface-dark overflow-hidden group"
+>
+  <div
+    class="aspect-video bg-background-dark flex items-center justify-center border-b border-border-zinc"
+  >
+    <span
+      class="material-symbols-outlined text-border-zinc text-6xl group-hover:text-primary transition-colors"
+    >
+      {img}
+    </span>
+  </div>
+  <div class="p-6">
+    <a
+      href={project.data.demoUrl}
+      class="mono-text text-text-main font-bold mb-2">{title}</a
+    >
+    <p class="text-xs text-text-muted mb-4 leading-relaxed">
+      {description}
+    </p>
+    <div class="flex flex-wrap gap-2">
+      {
+        tags.map((tag) => (
+          <span class="text-[10px] mono-text text-primary border border-primary/30 px-2 py-0.5">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>

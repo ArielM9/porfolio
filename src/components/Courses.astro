@@ -1,0 +1,29 @@
+---
+interface Props {
+  courses?: Array<{
+    title: string;
+    platform: string;
+    year?: string;
+  }>;
+}
+
+const { courses = [] } = Astro.props;
+---
+
+{
+  courses.length > 0 && (
+    <div class="col-span-12 flex flex-col gap-3">
+      {courses.map((course) => (
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-text-main">{course.title}</span>
+          <div class="flex items-center gap-3">
+            <span class="mono-text text-xs text-text-muted">{course.platform}</span>
+            {course.year && (
+              <span class="mono-text text-xs text-primary">{course.year}</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}

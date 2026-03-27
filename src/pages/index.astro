@@ -189,45 +189,51 @@ const sortedProjects = projects.sort(
           Conectemos &gt; contacto.txt
         </h2>
         <p class="text-text-muted mb-8 mono-text text-sm">
-          Abierto a colaboraciones y oportunidades de nivel junior.
+          Abierto a colaboraciones y oportunidades.
         </p>
-        <div
-          class="bg-surface-dark border border-border-zinc p-4 text-left mono-text text-sm mb-6"
-        >
-          <div class="flex gap-2 mb-2">
-            <span class="text-green-400">?</span>
-            <span class="text-text-main">Mensaje:</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-primary">$</span>
-            <input
-              type="text"
-              placeholder="Escribe tu mensaje..."
-              class="bg-transparent border-none focus:ring-0 focus:outline-none p-0 text-text-main w-full placeholder-zinc-700"
-            />
-          </div>
-        </div>
-        <div class="flex justify-center gap-8">
+        
+        <div class="flex justify-center gap-6">
           <a
-            href="#"
-            class="text-text-muted hover:text-primary mono-text text-xs flex items-center gap-2 transition-colors"
+            href="https://github.com/tu-usuario"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-text-muted hover:text-primary mono-text text-sm flex items-center gap-2 px-4 py-2 rounded transition-colors border border-transparent hover:border-border-zinc"
           >
-            <iconify-icon icon="simple-icons:github" class="text-lg"
+            <iconify-icon icon="simple-icons:github" class="text-xl"
             ></iconify-icon> GITHUB
           </a>
           <a
-            href="#"
-            class="text-text-muted hover:text-primary mono-text text-xs flex items-center gap-2 transition-colors"
+            href="https://linkedin.com/in/tu-perfil"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-text-muted hover:text-primary mono-text text-sm flex items-center gap-2 px-4 py-2 rounded transition-colors border border-transparent hover:border-border-zinc"
           >
-            <iconify-icon icon="simple-icons:linkedin" class="text-lg"
+            <iconify-icon icon="simple-icons:linkedin" class="text-xl"
             ></iconify-icon> LINKEDIN
           </a>
-          <a
-            href="#"
-            class="text-text-muted hover:text-primary mono-text text-xs flex items-center gap-2 transition-colors"
-          >
-            <span class="material-symbols-outlined text-sm">mail</span> EMAIL
-          </a>
+          <div class="relative">
+            <button
+              id="email-btn"
+              class="text-text-muted hover:text-primary mono-text text-sm flex items-center gap-2 px-4 py-2 rounded transition-colors border border-transparent hover:border-border-zinc"
+            >
+              <span class="material-symbols-outlined text-lg">mail</span> EMAIL
+            </button>
+            <div
+              id="email-tooltip"
+              class="hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-surface-dark border border-border-zinc px-3 py-2 min-w-[200px] z-50"
+            >
+              <div class="flex items-center justify-between gap-2">
+                <span class="mono-text text-xs text-text-main select-all">porfolio@arielmarchegiani.com</span>
+                <button
+                  id="copy-email-btn"
+                  class="text-primary hover:text-primary/80 transition-colors p-1"
+                  title="Copiar email"
+                >
+                  <span class="material-symbols-outlined text-sm">content_copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -235,3 +241,37 @@ const sortedProjects = projects.sort(
 
   <Footer />
 </Layout>
+
+<script>
+  const emailBtn = document.getElementById('email-btn');
+  const emailTooltip = document.getElementById('email-tooltip');
+  const copyEmailBtn = document.getElementById('copy-email-btn');
+
+  emailBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    emailTooltip?.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!emailTooltip?.contains(e.target as Node) && e.target !== emailBtn) {
+      emailTooltip?.classList.add('hidden');
+    }
+  });
+
+  copyEmailBtn?.addEventListener('click', (e) => {
+    const btn = e.currentTarget as HTMLButtonElement;
+    
+    navigator.clipboard.writeText('porfolio@arielmarchegiani.com').then(() => {
+      const icon = btn.querySelector('span');
+      if (icon) {
+        icon.textContent = 'check';
+        btn.classList.add('text-green-400');
+        
+        setTimeout(() => {
+          icon.textContent = 'content_copy';
+          btn.classList.remove('text-green-400');
+        }, 2000);
+      }
+    });
+  });
+</script>

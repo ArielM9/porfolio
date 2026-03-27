@@ -21,14 +21,17 @@
   </p>
   <div class="flex gap-4">
     <button
-      class="mono-text border border-primary text-primary px-6 py-3 text-sm hover:bg-primary hover:text-background-dark transition-all"
+      onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
+      class="mono-text border border-primary text-primary px-6 py-3 text-sm hover:bg-primary hover:text-background-dark transition-all cursor-pointer"
     >
       ver_proyectos.sh
     </button>
-    <button
+    <a
+      href="/cv.pdf"
+      download="cv-ariel-marchegiani.pdf"
       class="mono-text border border-border-zinc px-6 py-3 text-sm hover:border-text-main transition-all"
     >
-      leer_blog.md
-    </button>
+      descargar_cv.pdf
+    </a>
   </div>
 </section>

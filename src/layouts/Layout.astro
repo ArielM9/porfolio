@@ -3,20 +3,41 @@ import "../styles/global.css";
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = import.meta.env.PUBLIC_SITE_DESCRIPTION || "Portfolio de Desarrollador Web Full Stack",
+  image = "/og-default.png"
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || "https://arielmarchegiani.com";
 ---
 
 <!doctype html>
 <html class="dark" lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="ArielM_ Portfolio - Desarrollador Web" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/src/image/favicon_2.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${image}`} />
+    <meta property="og:url" content={siteUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${image}`} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

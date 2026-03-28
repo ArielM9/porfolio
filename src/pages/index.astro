@@ -10,9 +10,19 @@ const projects = await getCollection("projects");
 const sortedProjects = projects.sort(
   (a, b) => a.data.priority - b.data.priority,
 );
+
+// Environment variables
+const githubUrl = import.meta.env.PUBLIC_GITHUB || "#";
+const linkedinUrl = import.meta.env.PUBLIC_LINKEDIN || "#";
+const emailAddress = import.meta.env.PUBLIC_EMAIL || "contact@example.com";
+const siteTitle = import.meta.env.PUBLIC_SITE_TITLE || "Ariel Marchegiani | Desarrollador Web Full Stack";
+const siteDescription = import.meta.env.PUBLIC_SITE_DESCRIPTION || "Portfolio de Desarrollador Web Full Stack con enfoque en JavaScript/TypeScript y React/Next.js";
 ---
 
-<Layout title="Ariel Marchegiani | Desarrollador Web Full Stack">
+<Layout 
+  title={siteTitle}
+  description={siteDescription}
+>
   <Header />
 
   <main class="flex-1 p-4 md:p-6 grid grid-cols-12 gap-4">
@@ -194,7 +204,7 @@ const sortedProjects = projects.sort(
         
         <div class="flex justify-center gap-6">
           <a
-            href="https://github.com/tu-usuario"
+            href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="text-text-muted hover:text-primary mono-text text-sm flex items-center gap-2 px-4 py-2 rounded transition-colors border border-transparent hover:border-border-zinc"
@@ -203,7 +213,7 @@ const sortedProjects = projects.sort(
             ></iconify-icon> GITHUB
           </a>
           <a
-            href="https://linkedin.com/in/tu-perfil"
+            href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="text-text-muted hover:text-primary mono-text text-sm flex items-center gap-2 px-4 py-2 rounded transition-colors border border-transparent hover:border-border-zinc"
@@ -223,7 +233,7 @@ const sortedProjects = projects.sort(
               class="hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-surface-dark border border-border-zinc px-3 py-2 min-w-[200px] z-50"
             >
               <div class="flex items-center justify-between gap-2">
-                <span class="mono-text text-xs text-text-main select-all">porfolio@arielmarchegiani.com</span>
+                <span class="mono-text text-xs text-text-main select-all">{emailAddress}</span>
                 <button
                   id="copy-email-btn"
                   class="text-primary hover:text-primary/80 transition-colors p-1"
@@ -261,7 +271,7 @@ const sortedProjects = projects.sort(
   copyEmailBtn?.addEventListener('click', (e) => {
     const btn = e.currentTarget as HTMLButtonElement;
     
-    navigator.clipboard.writeText('porfolio@arielmarchegiani.com').then(() => {
+    navigator.clipboard.writeText(emailAddress).then(() => {
       const icon = btn.querySelector('span');
       if (icon) {
         icon.textContent = 'check';

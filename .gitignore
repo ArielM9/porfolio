@@ -18,6 +18,10 @@ Thumbs.db
 # Local agent config (keep private)
 AGENTS.md
 
+# Environment variables (private - contains personal data)
+.env
+.env.local
+
 # Personal files
 *.pdf
 currículum*.pdf

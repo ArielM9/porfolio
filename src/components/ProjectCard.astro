@@ -7,8 +7,8 @@ interface Props {
   img?: string;
 }
 
-const { project, icon = "terminal", img = "" } = Astro.props;
-const { title, description, tags } = project.data;
+const { project, icon = "terminal" } = Astro.props;
+const { title, description, tags, img: projectImg, demoUrl } = project.data;
 ---
 
 <div
@@ -17,16 +17,26 @@ const { title, description, tags } = project.data;
   <div
     class="aspect-video bg-background-dark flex items-center justify-center border-b border-border-zinc"
   >
-    <span
-      class="material-symbols-outlined text-border-zinc text-6xl group-hover:text-primary transition-colors"
-    >
-      {img}
-    </span>
+    {projectImg ? (
+      <img 
+        src={projectImg} 
+        alt={title}
+        class="w-full h-full object-cover"
+      />
+    ) : (
+      <span
+        class="material-symbols-outlined text-border-zinc text-6xl group-hover:text-primary transition-colors"
+      >
+        {icon}
+      </span>
+    )}
   </div>
   <div class="p-6">
     <a
-      href={project.data.demoUrl}
-      class="mono-text text-text-main font-bold mb-2">{title}</a
+      href={demoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mono-text text-text-main font-bold mb-2 hover:text-primary transition-colors">{title}</a
     >
     <p class="text-xs text-text-muted mb-4 leading-relaxed">
       {description}

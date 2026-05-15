@@ -17,6 +17,8 @@ Thumbs.db
 
 # Local agent config (keep private)
 AGENTS.md
+.agents/
+.opencode/
 
 # Environment variables (private - contains personal data)
 .env

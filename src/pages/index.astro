@@ -25,7 +25,7 @@ const siteDescription = import.meta.env.PUBLIC_SITE_DESCRIPTION || "Portfolio de
 >
   <Header />
 
-  <main class="flex-1 p-4 md:p-6 grid grid-cols-12 gap-4">
+  <main id="main-content" class="flex-1 p-4 md:p-6 grid grid-cols-12 gap-4">
     <Hero />
 
     <!-- <aside
@@ -225,12 +225,15 @@ const siteDescription = import.meta.env.PUBLIC_SITE_DESCRIPTION || "Portfolio de
             <button
               id="email-btn"
               class="text-text-muted hover:text-primary mono-text text-sm flex items-center gap-2 px-4 py-2 rounded transition-colors border border-transparent hover:border-border-zinc"
+              aria-label="Mostrar email de contacto"
+              tabindex="0"
             >
               <span class="material-symbols-outlined text-lg">mail</span> EMAIL
             </button>
             <div
               id="email-tooltip"
               class="hidden absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-surface-dark border border-border-zinc px-3 py-2 min-w-[200px] z-50"
+              role="tooltip"
             >
               <div class="flex items-center justify-between gap-2">
                 <span class="mono-text text-xs text-text-main select-all">{emailAddress}</span>
@@ -238,6 +241,7 @@ const siteDescription = import.meta.env.PUBLIC_SITE_DESCRIPTION || "Portfolio de
                   id="copy-email-btn"
                   class="text-primary hover:text-primary/80 transition-colors p-1"
                   title="Copiar email"
+                  aria-label="Copiar email al portapapeles"
                 >
                   <span class="material-symbols-outlined text-sm">content_copy</span>
                 </button>
@@ -262,8 +266,21 @@ const siteDescription = import.meta.env.PUBLIC_SITE_DESCRIPTION || "Portfolio de
     emailTooltip?.classList.toggle('hidden');
   });
 
+  emailBtn?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      emailTooltip?.classList.toggle('hidden');
+    }
+  });
+
   document.addEventListener('click', (e) => {
     if (!emailTooltip?.contains(e.target as Node) && e.target !== emailBtn) {
+      emailTooltip?.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
       emailTooltip?.classList.add('hidden');
     }
   });

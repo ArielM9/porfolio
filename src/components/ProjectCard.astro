@@ -12,7 +12,7 @@ const { title, description, tags, img: projectImg, demoUrl } = project.data;
 ---
 
 <div
-  class="col-span-12 md:col-span-6 lg:col-span-4 window-border bg-surface-dark overflow-hidden group"
+  class="col-span-12 md:col-span-6 lg:col-span-4 window-border bg-surface-dark overflow-hidden group cursor-pointer transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
 >
   <div
     class="aspect-video bg-background-dark flex items-center justify-center border-b border-border-zinc"
@@ -31,12 +31,12 @@ const { title, description, tags, img: projectImg, demoUrl } = project.data;
       </span>
     )}
   </div>
-  <div class="p-6">
+  <div class="p-6 cursor-pointer">
     <a
       href={demoUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="mono-text text-text-main font-bold mb-2 hover:text-primary transition-colors">{title}</a
+      class="mono-text text-text-main font-bold mb-2 hover:text-primary transition-colors block">{title}</a
     >
     <p class="text-xs text-text-muted mb-4 leading-relaxed">
       {description}

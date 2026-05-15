@@ -16,12 +16,7 @@ export default {
 				"display": ["Inter", "sans-serif"],
 				"mono": ["JetBrains Mono", "monospace"]
 			},
-			borderRadius: {
-				"DEFAULT": "2px",
-				"lg": "2px",
-				"xl": "2px",
 			},
-		},
 	},
 	plugins: [],
 }
